@@ -44,7 +44,9 @@ public class AlertHandler extends Thread {
 	    			Date d=c.getTime();
 	    			String newdate=formatter.format(d);
 	    			i.nextAlertDate=newdate;
-	    			System.out.println(i.name+" alerted "+i.nextAlertDate);
+	    			Thread a=new AlertThread(i);
+	    			a.start();
+	    			System.out.println(i.username+" "+i.name+" will be alerted "+i.nextAlertDate);
 	    			
 	    		}
 	    		

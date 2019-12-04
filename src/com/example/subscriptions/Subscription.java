@@ -13,6 +13,7 @@ public class Subscription implements Serializable {
 	public int intnum;
 	public String username;
 	public boolean func;
+	//public String did;
 	
 	public Subscription(int id,String name,String date,double price,int inttype,int intnum,String username,boolean func) {
 		this.id=id;
@@ -23,6 +24,7 @@ public class Subscription implements Serializable {
 		this.intnum=intnum;
 		this.username=username;
 		this.func=func;
+		//this.did=did;
 	}
 	
 }

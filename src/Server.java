@@ -2,6 +2,8 @@ import java.io.*;
 import java.text.*; 
 import java.util.*;
 
+import org.json.JSONObject;
+
 import com.example.subscriptions.Subscription;
 
 import java.net.*;
@@ -14,10 +16,14 @@ public class Server
         // server is listening on port 5056 
         ServerSocket ss = new ServerSocket(5057); 
         LinkedList<Item> list=new LinkedList<Item>();
+        
+        
         // running infinite loop for getting 
         // client request 
+        
         Thread alert=new AlertHandler(list);
         alert.start();
+        
         while (true)  
         { 
             Socket s = null; 
@@ -37,7 +43,10 @@ public class Server
                 s.close(); 
                 e.printStackTrace(); 
             } 
+            
+            
         } 
+        
     } 
 } 
   
@@ -54,6 +63,7 @@ class Item{
 	public String username;
 	public String lastAlertedFor;
 	public String nextAlertDate;
+	//public String did;
 	
 	public Item(int id,String name,String date,double price,int inttype,int intnum,String username) {
 		
@@ -67,6 +77,6 @@ class Item{
 		this.username=username;
 		this.lastAlertedFor="";
 		this.nextAlertDate=date;
-		
+		//this.did=did;
 	}
 }

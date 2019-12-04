@@ -59,7 +59,7 @@ public class ClientHandler extends Thread
     }
     
     public void addNewSub(Subscription s) {
-    	
+    	//System.out.println(s.did);
     	Item item=new Item(s.id,s.name,s.date,s.price,s.inttype,s.intnum,s.username);
     	mutex.P(s.name);
     	//System.out.println("Lock "+s.name);
