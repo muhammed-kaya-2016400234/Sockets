@@ -8,9 +8,11 @@ import java.util.ListIterator;
 public class AlertHandler extends Thread {
 
 	LinkedList<Item> list; 
+	CountingSemaphore mutex;
 	
-	public AlertHandler(LinkedList<Item> list) {
+	public AlertHandler(LinkedList<Item> list,CountingSemaphore mutex) {
 		this.list=list;
+		this.mutex=mutex;
 	}
 	public void run() {
 		
@@ -28,7 +30,9 @@ public class AlertHandler extends Thread {
 			String tomorrow=formatter.format(dt);
 			//System.out.println(tomorrow);
 			
+			mutex.P("alert handler");
 	    	for(Item i:list) {
+	    		
 	    		
 	    		//System.out.println(i.nextAlertDate+" of "+i.name+" "+tomorrow);
 	    		if(i.nextAlertDate.equals(tomorrow)&&!i.lastAlertedFor.equals(tomorrow)) {
@@ -52,6 +56,7 @@ public class AlertHandler extends Thread {
 	    		
 	    		
 	    	}
+	    	mutex.V("alert handler");
 		}
 	}
 	

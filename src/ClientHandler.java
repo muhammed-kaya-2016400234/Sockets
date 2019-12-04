@@ -12,13 +12,14 @@ public class ClientHandler extends Thread
     
     final Socket s; 
     LinkedList<Item> list; 
-    static CountingSemaphore mutex=new CountingSemaphore(1); 
-  
+    //static CountingSemaphore mutex=new CountingSemaphore(1); 
+    CountingSemaphore mutex;
     // Constructor 
-    public ClientHandler(Socket s,LinkedList<Item> list)  
+    public ClientHandler(Socket s,LinkedList<Item> list,CountingSemaphore mutex)  
     { 
         this.s = s;  
         this.list=list;
+        this.mutex=mutex;
     } 
   
     @Override
@@ -59,16 +60,14 @@ public class ClientHandler extends Thread
     }
     
     public void addNewSub(Subscription s) {
-    	//System.out.println(s.did);
+    	
     	Item item=new Item(s.id,s.name,s.date,s.price,s.inttype,s.intnum,s.username);
     	mutex.P(s.name);
-    	//System.out.println("Lock "+s.name);
-    	//for(int i=0;i<10000000;i++)
+    	
     		list.add(item);
-    	//System.out.println("New subscription added");
-    	//System.out.println("Release "+s.name);
+    	
     	mutex.V(s.name);
-    	//System.out.println(list.size());
+    
     	printList();
     	
     }

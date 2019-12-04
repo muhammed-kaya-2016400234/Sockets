@@ -12,11 +12,13 @@ public class Server
         ServerSocket ss = new ServerSocket(5057); 
         LinkedList<Item> list=new LinkedList<Item>();
         
-        
+        System.out.println("Server started");
         // running infinite loop for getting 
         // client request 
         
-        Thread alert=new AlertHandler(list);
+        CountingSemaphore mutex=new CountingSemaphore(1); 
+        
+        Thread alert=new AlertHandler(list,mutex);
         alert.start();
         
         while (true)  
@@ -30,7 +32,7 @@ public class Server
                          
                // System.out.println("Assigning new thread for this client"); 
                
-                Thread t = new ClientHandler(s,list); 
+                Thread t = new ClientHandler(s,list,mutex); 
                 t.start(); 
                   
             } 

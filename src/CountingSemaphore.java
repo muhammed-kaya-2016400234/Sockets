@@ -14,12 +14,12 @@ public class CountingSemaphore { // Different from the book
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	 System.out.println(name+" acquired");
+	// System.out.println(name+" acquired");
 	 value--;
 	}
 	 public synchronized void V(String name) { // non-blocking
 	 value++;
-	 System.out.println(name+" released");
+	 //System.out.println(name+" released");
 	 notify();
 	 }
 	} 

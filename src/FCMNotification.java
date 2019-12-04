@@ -30,6 +30,7 @@ public class FCMNotification {
         conn.setRequestProperty("Authorization", "key=" + authKey);
         conn.setRequestProperty("Content-Type", "application/json");
 
+        /*
         JSONObject data = new JSONObject();
         data.put("to",i.username.trim());
         JSONObject info = new JSONObject();
@@ -37,9 +38,14 @@ public class FCMNotification {
         info.put("text", "Your payment date for "+i.name+" is close!! You will be alerted for next payment in "+i.nextAlertDate); // Notification body
         info.put("sound","default" );
         data.put("notification", info);
-
+*/
+        
+        String text="Your payment date for "+i.name+" is close!! Next payment after this: "+i.nextAlertDate;
+        String json="{\r\n\"to\":\""+i.username.trim()+"\",\r\n\"notification\":{\r\n  \"title\":\"SUBSCRIPTIONS\",\r\n       \"text\":\""+text+"\",\r\n      \"sound\":\"default\"\r\n}\r\n}";
+       System.out.println(json);
         OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
-        wr.write(data.toString());
+       // wr.write(data.toString());
+        wr.write(json);
         wr.flush();
         wr.close();
 
