@@ -17,9 +17,9 @@ public class AlertHandler extends Thread {
 	public void run() {
 		
 		while(true) {
-			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");  
+			//DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");  
 		    //System.out.println(dtf.format(now));  
-			ListIterator<Item> iter=list.listIterator();
+			//ListIterator<Item> iter=list.listIterator();
 			
 			Date dt = new Date();
 			Calendar c = Calendar.getInstance(); 

@@ -33,15 +33,17 @@ public class ClientHandler extends Thread
 			Subscription sub=(Subscription)dis.readObject();
 			//System.out.println(sub.name);
 			
-			if(sub.func==true) {
+			if(sub.func==2) {
 				
 				addNewSub(sub);
-			}else {
+			}else if (sub.func==1) {
 				//this.addNewSub(sub);
 				updateSub(sub);
 				
 				//System.out.println("Update wanted");
 				
+			}else {
+				deleteSub(sub);
 			}
 			dos.write(1);
 			dos.flush();
@@ -93,7 +95,23 @@ public class ClientHandler extends Thread
     	mutex.V(s.name);
     	printList();
     }
+    public void deleteSub(Subscription s) {
+    	mutex.P(s.username);
+    	ListIterator<Item> iter=list.listIterator();
+    	while(iter.hasNext()) {
+    		Item i=iter.next();
+    		if(i.username.equals(s.username)&&i.id==s.id) {
+    			iter.remove();
+    			break;
+    		}
+    	}
+    	
+    	mutex.V(s.name);
+    	printList();
+    }
+    
     public void printList() {
+    	System.out.println("Current List of All Subscriptions:");
     	ListIterator<Item> iter=list.listIterator();
     	while(iter.hasNext()) {
     		Item i=iter.next();

@@ -12,10 +12,10 @@ public class Subscription implements Serializable {
 	public int inttype;
 	public int intnum;
 	public String username;
-	public boolean func;
+	public int func;
 	//public String did;
 	
-	public Subscription(int id,String name,String date,double price,int inttype,int intnum,String username,boolean func) {
+	public Subscription(int id,String name,String date,double price,int inttype,int intnum,String username,int func) {
 		this.id=id;
 		this.name=name;
 		this.date=date;
