@@ -37,10 +37,9 @@ public class ClientHandler extends Thread
 				
 				addNewSub(sub);
 			}else if (sub.func==1) {
-				//this.addNewSub(sub);
+				
 				updateSub(sub);
 				
-				//System.out.println("Update wanted");
 				
 			}else {
 				deleteSub(sub);
