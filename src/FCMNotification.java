@@ -42,7 +42,7 @@ public class FCMNotification {
         
         String text="Your payment date for "+i.name+" is close!! Next payment after this: "+i.nextAlertDate;
         String json="{\r\n\"to\":\""+i.username.trim()+"\",\r\n\"notification\":{\r\n  \"title\":\"SUBSCRIPTIONS\",\r\n       \"text\":\""+text+"\",\r\n      \"sound\":\"default\"\r\n}\r\n}";
-       System.out.println(json);
+        //System.out.println(json);
         OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
        // wr.write(data.toString());
         wr.write(json);
@@ -50,7 +50,7 @@ public class FCMNotification {
         wr.close();
 
         int responseCode = conn.getResponseCode();
-        System.out.println("Response Code : " + responseCode);
+        //System.out.println("Response Code : " + responseCode);
 
         BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
         String inputLine;
@@ -63,8 +63,5 @@ public class FCMNotification {
 
     }
 
-    @SuppressWarnings("static-access")
-    public static void main2(String[] args) throws Exception {
-        //FCMNotification.pushFCMNotification("USER_DEVICE_TOKEN");
-    }
+   
 }

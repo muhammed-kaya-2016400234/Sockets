@@ -75,7 +75,7 @@ public class ClientHandler extends Thread
     
     public void updateSub(Subscription s) {
     	
-    	mutex.P(s.username);
+    	mutex.P(s.name);
     	ListIterator<Item> iter=list.listIterator();
     	while(iter.hasNext()) {
     		Item i=iter.next();
@@ -96,7 +96,7 @@ public class ClientHandler extends Thread
     	printList();
     }
     public void deleteSub(Subscription s) {
-    	mutex.P(s.username);
+    	mutex.P(s.name);
     	ListIterator<Item> iter=list.listIterator();
     	while(iter.hasNext()) {
     		Item i=iter.next();
