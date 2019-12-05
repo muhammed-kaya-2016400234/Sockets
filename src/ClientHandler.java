@@ -87,6 +87,7 @@ public class ClientHandler extends Thread
     			i.price=s.price;
     			i.nextAlertDate=s.date;
     			iter.set(i);
+    			System.out.println(i.name+" has been updated.");
     			break;
     		}
     	}
@@ -101,6 +102,7 @@ public class ClientHandler extends Thread
     		Item i=iter.next();
     		if(i.username.equals(s.username)&&i.id==s.id) {
     			iter.remove();
+    			System.out.println(i.name+" has been deleted.");
     			break;
     		}
     	}
