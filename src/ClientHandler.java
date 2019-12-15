@@ -25,7 +25,7 @@ public class ClientHandler extends Thread
     @Override
     public void run()  
     { 
-       
+    	
         try {
         	ObjectOutputStream dos=new ObjectOutputStream(s.getOutputStream());
         	ObjectInputStream dis=new ObjectInputStream(s.getInputStream());
@@ -50,21 +50,30 @@ public class ClientHandler extends Thread
 			dis.close(); 
             dos.close(); 
 			
-		} catch (ClassNotFoundException e1) {
+		} catch (Exception e1) {
+			System.out.println("Exception occurred");
+			
+				mutex.V("exception");
+			
+			try {
+				ObjectOutputStream dos=new ObjectOutputStream(s.getOutputStream());
+	        	dos.write(0);
+	        	dos.flush();
+	        	dos.close();
+			}catch(IOException e){
+				e.printStackTrace();
+			}
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+	
 		}
-     
     }
     
     public void addNewSub(Subscription s) {
     	
-    	Item item=new Item(s.id,s.name,s.date,s.price,s.inttype,s.intnum,s.username);
-    	mutex.P(s.name);
     	
+    	mutex.P(s.name);
+    	Item item=new Item(s.id,s.name,s.date,s.price,s.inttype,s.intnum,s.username);
     		list.add(item);
     	
     	mutex.V(s.name);
@@ -79,7 +88,7 @@ public class ClientHandler extends Thread
     	ListIterator<Item> iter=list.listIterator();
     	while(iter.hasNext()) {
     		Item i=iter.next();
-    		if(i.username.equals(s.username)&&i.id==s.id) {
+    		if(i.username!=null&&s.username!=null&&i.username.equals(s.username)&&i.id==s.id) {
     			i.name=s.name;
     			i.date=s.date;
     			i.intnum=s.intnum;
@@ -96,11 +105,12 @@ public class ClientHandler extends Thread
     	printList();
     }
     public void deleteSub(Subscription s) {
+    	
     	mutex.P(s.name);
     	ListIterator<Item> iter=list.listIterator();
     	while(iter.hasNext()) {
     		Item i=iter.next();
-    		if(i.username.equals(s.username)&&i.id==s.id) {
+    		if(i.username!=null&&s.username!=null&&i.username.equals(s.username)&&i.id==s.id) {
     			iter.remove();
     			System.out.println(i.name+" has been deleted.");
     			break;
@@ -109,6 +119,8 @@ public class ClientHandler extends Thread
     	
     	mutex.V(s.name);
     	printList();
+
+
     }
     
     public void printList() {
@@ -116,7 +128,7 @@ public class ClientHandler extends Thread
     	ListIterator<Item> iter=list.listIterator();
     	while(iter.hasNext()) {
     		Item i=iter.next();
-    		System.out.println(i.id+" "+i.name+" "+i.date+" "+i.price);
+    		System.out.println(i.id+" "+i.name+" "+i.username+" "+i.date+" "+i.price);
     	}
     }
     

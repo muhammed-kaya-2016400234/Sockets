@@ -18,7 +18,7 @@ public class CountingSemaphore { // Different from the book
 	 value--;
 	}
 	 public synchronized void V(String name) { // non-blocking
-	 value++;
+	 value=1;
 	 //System.out.println(name+" released");
 	 notify();
 	 }
