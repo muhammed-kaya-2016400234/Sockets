@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 
 public class Subscription implements Serializable {
-	//private static final long serialVersionUID = 1L;
 	public int id;
 	public String name;
 	public String date;
@@ -13,7 +12,6 @@ public class Subscription implements Serializable {
 	public int intnum;
 	public String username;
 	public int func;
-	//public String did;
 	
 	public Subscription(int id,String name,String date,double price,int inttype,int intnum,String username,int func) {
 		this.id=id;
@@ -24,7 +22,7 @@ public class Subscription implements Serializable {
 		this.intnum=intnum;
 		this.username=username;
 		this.func=func;
-		//this.did=did;
+		
 	}
 	
 }

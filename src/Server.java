@@ -8,30 +8,23 @@ public class Server
 { 
     public static void main(String[] args) throws IOException  
     { 
-        // server is listening on port 5056 
+       
         ServerSocket ss = new ServerSocket(5057); 
         LinkedList<Item> list=new LinkedList<Item>();
         
         System.out.println("Server started");
-        // running infinite loop for getting 
-        // client request 
         
         CountingSemaphore mutex=new CountingSemaphore(1); 
-        
+   
         Thread alert=new AlertHandler(list,mutex);
         alert.start();
         
         while (true)  
         { 
             Socket s = null; 
-              
             try 
             { 
-                // socket object to receive incoming client requests 
                 s = ss.accept(); 
-                         
-               // System.out.println("Assigning new thread for this client"); 
-               
                 Thread t = new ClientHandler(s,list,mutex); 
                 t.start(); 
                   
@@ -47,7 +40,7 @@ public class Server
     } 
 } 
   
-// ClientHandler class 
+
 
 
 class Item{

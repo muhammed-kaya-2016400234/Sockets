@@ -31,8 +31,6 @@ public class ClientHandler extends Thread
         	ObjectInputStream dis=new ObjectInputStream(s.getInputStream());
         
 			Subscription sub=(Subscription)dis.readObject();
-			//System.out.println(sub.name);
-			
 			if(sub.func==2) {
 				
 				addNewSub(sub);
@@ -40,16 +38,15 @@ public class ClientHandler extends Thread
 				
 				updateSub(sub);
 				
-				
 			}else {
 				deleteSub(sub);
 			}
 			dos.write(1);
 			dos.flush();
-			
+		
 			dis.close(); 
             dos.close(); 
-			
+		
 		} catch (Exception e1) {
 			System.out.println("Exception occurred");
 			

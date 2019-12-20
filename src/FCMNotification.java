@@ -10,7 +10,7 @@ import com.example.subscriptions.Subscription;
 public class FCMNotification {
 
     // Method to send Notifications from server to client end.
-    public final static String AUTH_KEY_FCM = "AIzaSyDcDO5OZxW2-C8D-xyCiSSJNVA6ifVWPYY";
+    public final static String AUTH_KEY_FCM = "AAAAWMNFmHc:APA91bEUe2GEnBWE-D78FoWQdGJNLxrpv4YqHP5t5SJqo_l1jd8VwM8Sie6_Xb7fFh3gygINYVBSDD_vK7EUsxKtw2RqxtVvHdSK5cMsooROpo6EOjtMQWzh16yBDpuXw-fx7aB8M_0h";
     public final static String API_URL_FCM = "https://fcm.googleapis.com/fcm/send";
 
     public static void pushFCMNotification(Item i) throws Exception {
@@ -49,7 +49,7 @@ public class FCMNotification {
         wr.close();
 
         int responseCode = conn.getResponseCode();
-        //System.out.println("Response Code : " + responseCode);
+        System.out.println("Response Code : " + responseCode);
 
         BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
         String inputLine;
